@@ -623,5 +623,32 @@
             }
         }
     </script>
+  <!-- PROTECCIÓN DJ JADE -->
+<script>
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener("dragstart", function(e) {
+    e.preventDefault();
+});
+
+document.addEventListener("selectstart", function(e) {
+    e.preventDefault();
+});
+
+document.querySelectorAll("img").forEach(function(img) {
+    img.setAttribute("draggable", "false");
+
+    img.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
+    });
+});
+
+console.log(
+    "%c DJ JADE • WRADIO JADE DE COLOMBIA ",
+    "color:#b000ff;font-size:18px;font-weight:bold;"
+);
+</script>  
 </body>
 </html>

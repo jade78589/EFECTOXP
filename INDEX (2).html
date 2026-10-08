@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espacio de DJ Jade</title>
+    <!-- Tipografías de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050005;
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .xat-space-escenario {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* EFECTO ONDAS DE AGUA */
+        .contenedor-ondas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .onda-agua {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #ff00a0;
+            border-radius: 50%;
+            animation: expandirOnda 6s infinite linear;
+            opacity: 0;
+        }
+
+        .onda-1 { animation-delay: 0s; }
+        .onda-2 { animation-delay: 2s; }
+        .onda-3 { animation-delay: 4s; }
+
+        @keyframes expandirOnda {
+            0% { width: 50px; height: 50px; opacity: 0.8; }
+            100% { width: 800px; height: 800px; opacity: 0; }
+        }
+
+        /* CAPA Y ESTILOS DE LAS MARIPOSAS */
+        .capa-mariposas-global {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .contenedor-mariposa {
+            position: absolute;
+        }
+
+        .mariposa-izq-der {
+            animation: volarIzqDer 12s linear infinite;
+        }
+
+        .mariposa-der-izq {
+            animation: volarDerIzq 12s linear infinite;
+        }
+
+        @keyframes volarIzqDer {
+            0% { transform: translate(-100px, 100px) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(1000px, -200px) scale(1.1); opacity: 0; }
+        }
+
+        @keyframes volarDerIzq {
+            0% { transform: translate(1000px, 200px) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translate(-100px, -100px) scale(1.1); opacity: 0; }
+        }
+
+        /* Tiempos de animación de las mariposas */
+        .m-der-1 { top: 10%; animation-delay: 0s; }
+        .m-der-2 { top: 30%; animation-delay: 2s; }
+        .m-der-3 { top: 50%; animation-delay: 4s; }
+        .m-der-4 { top: 70%; animation-delay: 1s; }
+        .m-der-5 { top: 20%; animation-delay: 5s; }
+        .m-der-6 { top: 60%; animation-delay: 3s; }
+        .m-der-7 { top: 80%; animation-delay: 6s; }
+
+        .m-izq-1 { top: 15%; animation-delay: 1s; }
+        .m-izq-2 { top: 35%; animation-delay: 3s; }
+        .m-izq-3 { top: 55%; animation-delay: 5s; }
+        .m-izq-4 { top: 75%; animation-delay: 0s; }
+        .m-izq-5 { top: 25%; animation-delay: 4s; }
+        .m-izq-6 { top: 65%; animation-delay: 2s; }
+        .m-izq-7 { top: 85%; animation-delay: 6s; }
+
+        .mariposa-perfil-derecha, .mariposa-perfil-izquierda {
+            position: relative;
+            width: 30px;
+            height: 30px;
+        }
+
+        .ala {
+            position: absolute;
+            background: rgba(255, 0, 160, 0.6);
+            border: 1px solid #ff00a0;
+            border-radius: 50% 50% 0 50%;
+            box-shadow: 0 0 10px #ff00a0;
+            animation: aleteo 0.3s infinite alternate;
+        }
+
+        .ala-delantera-der, .ala-delantera-izq {
+            width: 20px;
+            height: 25px;
+            top: 0;
+            left: 5px;
+        }
+
+        .ala-trasera-der, .ala-trasera-izq {
+            width: 15px;
+            height: 18px;
+            top: 10px;
+            left: 0;
+            background: rgba(255, 153, 230, 0.5);
+        }
+
+        @keyframes aleteo {
+            0% { transform: scaleX(1) rotate(0deg); }
+            100% { transform: scaleX(0.3) rotate(15deg); }
+        }
+
+        .polvo-hada-der::after, .polvo-hada-izq::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffffff;
+            box-shadow: 0 0 8px #ff00a0, -10px 5px 6px #ff99e6, -20px -5px 6px #ffffff;
+            border-radius: 50%;
+            animation: destello 1s infinite alternate;
+        }
+
+        @keyframes destello {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        /* BLOQUE CENTRAL */
+        .contenedor-nombre {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .texto-caligrafico-glow {
+            font-family: 'Great Vibes', cursive;
+            font-size: 85px;
+            font-weight: 400;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ff00a0, 0 0 20px #ff00a0, 0 0 40px #ff00a0;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .subtitulo-colombia {
+            font-size: 15px;
+            letter-spacing: 5px;
+            color: #ff99e6;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .xat-divider {
+            width: 180px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff00a0, transparent);
+            margin: 10px auto;
+        }
+
+        /* MENÚ DE CASILLAS DESPLEGABLES */
+        .menu-casillas {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            z-index: 10;
+        }
+
+        .boton-casilla {
+            background: rgba(10, 0, 15, 0.7);
+            color: #ffffff;
+            border: 1px solid #ff00a0;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 160, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .boton-casilla:hover, .boton-casilla.activo {
+            background: #ff00a0;
+            box-shadow: 0 0 20px #ff00a0;
+            transform: translateY(-2px);
+        }
+
+        /* VENTANA DESPLEGABLE DE CONTENIDO */
+        .panel-desplegable {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(15, 0, 20, 0.9);
+            border: 1px solid #ff00a0;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255, 0, 160, 0.5);
+            padding: 20px;
+            margin-top: 15px;
+            backdrop-filter: blur(8px);
+            display: none;
+            animation: desplegar 0.4s ease-out forwards;
+        }
+
+        @keyframes desplegar {
+            from { opacity: 0; transform: translateY(-10px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .panel-desplegable.activo {
+            display: block;
+        }
+
+        .encabezado-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 0, 160, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .titulo-panel {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ff99e6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cerrar-panel {
+            cursor: pointer;
+            color: #ff00a0;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+
+        .cerrar-panel:hover {
+            color: #ffffff;
+        }
+
+        .contenido-panel {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        /* REPRODUCTOR ESTILO NEÓN */
+        .reproductor-lindo {
+            background: #ff00a0;
+            color: #ffffff;
+            border: none;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ff00a0;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 12px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .reproductor-lindo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px #ff00a0;
+            background: #e0008d;
+        }
+
+        /* ESTILOS DE GALERÍA Y AMIGOS */
+        .red-amigos, .red-galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .item-tarjeta {
+            background: rgba(255, 0, 160, 0.1);
+            border: 1px solid rgba(255, 0, 160, 0.3);
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+            font-size: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .item-tarjeta:hover {
+            transform: scale(1.05);
+            border-color: #ff00a0;
+        }
+
+        .item-tarjeta img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .item-tarjeta i {
+            font-size: 24px;
+            color: #ff99e6;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* PIE DE PÁGINA / FIRMA EN INGLÉS */
+        .firma-credito {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #ff99e6;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px #ff00a0;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="xat-space-escenario">
+        <!-- EFECTO DE ONDAS -->
+        <div class="contenedor-ondas">
+            <div class="onda-agua onda-1"></div>
+            <div class="onda-agua onda-2"></div>
+            <div class="onda-agua onda-3"></div>
+        </div>
+
+        <!-- SISTEMA DE 14 MARIPOSAS -->
+        <div class="capa-mariposas-global">
+            <!-- 7 MARIPOSAS DE IZQUIERDA A DERECHA -->
+            <div class="contenedor-mariposa mariposa-izq-der m-der-1 polvo-hada-der">
+                <div class="mariposa-perfil-derecha">
+                    <div class="ala ala-delantera-der"></div><div class="ala ala-trasera-der"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-izq-der m-der-2 polvo-hada-der">
+                <div class="mariposa-perfil-derecha">
+                    <div class="ala ala-delantera-der"></div><div class="ala ala-trasera-der"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-izq-der m-der-3 polvo-hada-der">
+                <div class="mariposa-perfil-derecha">
+                    <div class="ala ala-delantera-der"></div><div class="ala ala-trasera-der"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-izq-der m-der-4">
+                <div class="mariposa-perfil-derecha">
+                    <div class="ala ala-delantera-der"></div><div class="ala ala-trasera-der"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-izq-der m-der-5">
+                <div class="mariposa-perfil-derecha">
+                    <div class="ala ala-delantera-der"></div><div class="ala ala-trasera-der"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-izq-der m-der-6">
+                <div class="mariposa-perfil-derecha">
+                    <div class="ala ala-delantera-der"></div><div class="ala ala-trasera-der"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-izq-der m-der-7">
+                <div class="mariposa-perfil-derecha">
+                    <div class="ala ala-delantera-der"></div><div class="ala ala-trasera-der"></div>
+                </div>
+            </div>
+
+            <!-- 7 MARIPOSAS DE DERECHA A IZQUIERDA -->
+            <div class="contenedor-mariposa mariposa-der-izq m-izq-1 polvo-hada-izq">
+                <div class="mariposa-perfil-izquierda">
+                    <div class="ala ala-delantera-izq"></div><div class="ala ala-trasera-izq"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-der-izq m-izq-2 polvo-hada-izq">
+                <div class="mariposa-perfil-izquierda">
+                    <div class="ala ala-delantera-izq"></div><div class="ala ala-trasera-izq"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-der-izq m-izq-3 polvo-hada-izq">
+                <div class="mariposa-perfil-izquierda">
+                    <div class="ala ala-delantera-izq"></div><div class="ala ala-trasera-izq"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-der-izq m-izq-4">
+                <div class="mariposa-perfil-izquierda">
+                    <div class="ala ala-delantera-izq"></div><div class="ala ala-trasera-izq"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-der-izq m-izq-5">
+                <div class="mariposa-perfil-izquierda">
+                    <div class="ala ala-delantera-izq"></div><div class="ala ala-trasera-izq"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-der-izq m-izq-6">
+                <div class="mariposa-perfil-izquierda">
+                    <div class="ala ala-delantera-izq"></div><div class="ala ala-trasera-izq"></div>
+                </div>
+            </div>
+            <div class="contenedor-mariposa mariposa-der-izq m-izq-7">
+                <div class="mariposa-perfil-izquierda">
+                    <div class="ala ala-delantera-izq"></div><div class="ala ala-trasera-izq"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE CENTRAL CON EL NOMBRE -->
+        <div class="contenedor-nombre">
+            <h1 class="texto-caligrafico-glow">Jade</h1>
+            <div class="subtitulo-colombia">🇨🇴 COLOMBIA 🇨🇴</div>
+            <div class="xat-divider"></div>
+        </div>
+
+        <!-- MENU DE CASILLAS -->
+        <div class="menu-casillas">
+            <button class="boton-casilla" onclick="abrirCasilla('perfil')">
+                <i class="fa-solid fa-user"></i> Perfil
+            </button>
+            <button class="boton-casilla" onclick="abrirCasilla('galeria')">
+                <i class="fa-solid fa-image"></i> Galería
+            </button>
+            <button class="boton-casilla" onclick="abrirCasilla('amigos')">
+                <i class="fa-solid fa-heart"></i> Amigos
+            </button>
+            <button class="boton-casilla" onclick="abrirCasilla('musica')">
+                <i class="fa-solid fa-compact-disc"></i> Música
+            </button>
+        </div>
+
+        <!-- CASILLA DESPLEGABLE: PERFIL -->
+        <div id="panel-perfil" class="panel-desplegable">
+            <div class="encabezado-panel">
+                <span class="titulo-panel"><i class="fa-solid fa-user"></i> Mi Perfil</span>
+                <i class="fa-solid fa-xmark cerrar-panel" onclick="cerrarCasilla()"></i>
+            </div>
+            <div class="contenido-panel">
+                <p><strong>DJ:</strong> Jade</p>
+                <p><strong>Emisora:</strong> wradio_jade_de_colombia</p>
+                <p><strong>Ubicación:</strong> Colombia 🇨🇴</p>
+                <p><strong>Descripción:</strong> Bienvenido/a a mi espacio. Disfruta de la mejor música en vivo y las mejores vibras.</p>
+            </div>
+        </div>
+
+        <!-- CASILLA DESPLEGABLE: GALERÍA -->
+        <div id="panel-galeria" class="panel-desplegable">
+            <div class="encabezado-panel">
+                <span class="titulo-panel"><i class="fa-solid fa-image"></i> Galería</span>
+                <i class="fa-solid fa-xmark cerrar-panel" onclick="cerrarCasilla()"></i>
+            </div>
+            <div class="contenido-panel">
+                <div class="red-galeria">
+                    <!-- FOTO 1 -->
+                    <a href="https://xatimg.com/image/0FMoG38AgkPT.gif" target="_blank" class="item-tarjeta">
+                        <img src="https://xatimg.com/image/0FMoG38AgkPT.gif" alt="Foto 1">
+                    </a>
+                    <!-- FOTO 2 -->
+                    <a href="https://xatimg.com/image/CzhgCaYfnQBz.png" target="_blank" class="item-tarjeta">
+                        <img src="https://xatimg.com/image/CzhgCaYfnQBz.png" alt="Foto 2">
+                    </a>
+                    <!-- FOTO 3 -->
+                    <a href="https://xatimg.com/image/ZGEg7CLjsthu.jpg" target="_blank" class="item-tarjeta">
+                        <img src="https://xatimg.com/image/ZGEg7CLjsthu.jpg" alt="Foto 3">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASILLA DESPLEGABLE: AMIGOS -->
+        <div id="panel-amigos" class="panel-desplegable">
+            <div class="encabezado-panel">
+                <span class="titulo-panel"><i class="fa-solid fa-heart"></i> Amigos VIP</span>
+                <i class="fa-solid fa-xmark cerrar-panel" onclick="cerrarCasilla()"></i>
+            </div>
+            <div class="contenido-panel">
+                <div class="red-amigos">
+                    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>MAXI</div>
+                    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>KARITO</div>
+                    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>ARTURIN</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASILLA DESPLEGABLE: MÚSICA -->
+        <div id="panel-musica" class="panel-desplegable">
+            <div class="encabezado-panel">
+                <span class="titulo-panel"><i class="fa-solid fa-radio"></i> wradio_jade_de_colombia</span>
+                <i class="fa-solid fa-xmark cerrar-panel" onclick="cerrarCasilla()"></i>
+            </div>
+            <div class="contenido-panel">
+                <p style="text-align: center;">Sintoniza la transmisión oficial en directo:</p>
+                <!-- REPRODUCTOR ZENO RADIO -->
+                <button class="reproductor-lindo" onclick="toggleAudio(event)">
+                    <i id="icono-play" class="fa-solid fa-play"></i>
+                    <span id="texto-reproductor">ESCUCHAR EN VIVO</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- FIRMA AL FINAL DE LA PÁGINA EN INGLÉS -->
+        <div class="firma-credito">
+            Made by DJ Jade
+        </div>
+
+        <!-- AUDIO TRANSMISIÓN ZENO RADIO -->
+        <audio id="audio-bg" src="https://stream.zeno.fm/o9xaggtrr1xtv" preload="none"></audio>
+    </div>
+
+    <!-- SCRIPT DE INTERACCIÓN Y REPRODUCTOR -->
+    <script>
+        const audio = document.getElementById('audio-bg');
+        const iconoPlay = document.getElementById('icono-play');
+        const textoReproductor = document.getElementById('texto-reproductor');
+
+        function abrirCasilla(nombrePanel) {
+            const paneles = document.querySelectorAll('.panel-desplegable');
+            paneles.forEach(p => p.classList.remove('activo'));
+
+            const botones = document.querySelectorAll('.boton-casilla');
+            botones.forEach(b => b.classList.remove('activo'));
+
+            const panelObjetivo = document.getElementById('panel-' + nombrePanel);
+            if (panelObjetivo) {
+                panelObjetivo.classList.add('activo');
+            }
+        }
+
+        function cerrarCasilla() {
+            const paneles = document.querySelectorAll('.panel-desplegable');
+            paneles.forEach(p => p.classList.remove('activo'));
+            
+            const botones = document.querySelectorAll('.boton-casilla');
+            botones.forEach(b => b.classList.remove('activo'));
+        }
+
+        function toggleAudio(event) {
+            if (event) event.stopPropagation();
+            if (audio.paused) {
+                audio.play().then(() => actualizarBoton(true)).catch(() => {});
+            } else {
+                audio.pause();
+                actualizarBoton(false);
+            }
+        }
+
+        function actualizarBoton(reproduciendo) {
+            if (reproduciendo) {
+                iconoPlay.className = "fa-solid fa-pause";
+                textoReproductor.textContent = "PAUSAR RADIO";
+            } else {
+                iconoPlay.className = "fa-solid fa-play";
+                textoReproductor.textContent = "ESCUCHAR EN VIVO";
+            }
+        }
+    </script>
+</body>
+</html>

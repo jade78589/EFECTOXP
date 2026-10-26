@@ -29,24 +29,18 @@
             overflow: hidden;
         }
 
-        
-.xat-space-escenario {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    height: 600px;
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
-    overflow-y: auto;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+        .xat-space-escenario {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 600px;
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
         /* EFECTO ONDAS DE AGUA */
         .contenedor-ondas {
@@ -251,29 +245,21 @@
         }
 
         /* VENTANA DESPLEGABLE DE CONTENIDO */
-       
-
-.panel-desplegable {
-    position: relative;
-    z-index: 10;
-    width: 90%;
-    max-width: 500px;
-    box-sizing: border-box;
-    margin: 15px auto 0 auto;
-    align-self: center;
-    left: auto;
-    right: auto;
-    transform: none;
-    background: rgba(15, 0, 20, 0.9);
-    border: 1px solid #ff00a0;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(255, 0, 160, 0.5);
-    padding: 20px;
-    backdrop-filter: blur(8px);
-    display: none;
-    animation: desplegar 0.4s ease-out forwards;
-}
-
+        .panel-desplegable {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            background: rgba(15, 0, 20, 0.9);
+            border: 1px solid #ff00a0;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255, 0, 160, 0.5);
+            padding: 20px;
+            margin-top: 15px;
+            backdrop-filter: blur(8px);
+            display: none;
+            animation: desplegar 0.4s ease-out forwards;
+        }
 
         @keyframes desplegar {
             from { opacity: 0; transform: translateY(-10px) scale(0.95); }
@@ -313,22 +299,11 @@
             color: #ffffff;
         }
 
-        
-.contenido-panel {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #e0e0e0;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow-wrap: anywhere;
-}
-
-.contenido-panel * {
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
+        .contenido-panel {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
 
         /* REPRODUCTOR ESTILO NEÓN */
         .reproductor-lindo {
@@ -568,16 +543,14 @@
                 <i class="fa-solid fa-xmark cerrar-panel" onclick="cerrarCasilla()"></i>
             </div>
             <div class="contenido-panel">
-               
-<div class="red-amigos">
-    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>MAXI</div>
-    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>KARITO</div>
-    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>ARTURIN</div>
-    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>DAVID</div>
-    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>JOCKEY</div>
-</div>
-
-                </div>
+                <div class="red-amigos">
+                    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>MAXI</div>
+                    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>KARITO</div>
+                    <div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>ARTURIN</div>
+ 
+<div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>DAVID</div>
+<div class="item-tarjeta"><i class="fa-solid fa-user-check"></i>JOCKEY</div>
+              </div>
             </div>
         </div>
 
@@ -653,26 +626,5 @@
             }
         }
     </script>
-   
-<!-- 🔒 PROTECCIÓN DJ JADE -->
-<script>
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("dragstart", e => {
-    if (e.target.tagName === "IMG") e.preventDefault();
-});
-document.addEventListener("selectstart", e => e.preventDefault());
-
-document.addEventListener("keydown", function(e) {
-    if (
-        e.key === "F12" ||
-        (e.ctrlKey && ["u","s","c"].includes(e.key.toLowerCase())) ||
-        (e.ctrlKey && e.shiftKey && ["i","j"].includes(e.key.toLowerCase()))
-    ) {
-        e.preventDefault();
-    }
-});
-</script>
-
 </body>
 </html>
-

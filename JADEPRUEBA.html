@@ -626,5 +626,38 @@
             }
         }
     </script>
+   
+<script>
+/* Protección básica para WRADIO JADE */
+
+/* Desactivar el menú del clic derecho */
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+/* Evitar arrastrar imágenes */
+document.addEventListener('dragstart', function(e) {
+  if (e.target && e.target.tagName === 'IMG') {
+    e.preventDefault();
+  }
+});
+
+/* Evitar que las imágenes se abran al pulsarlas */
+document.querySelectorAll('img').forEach(function(img) {
+  img.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+  img.style.userSelect = 'none';
+  img.style.webkitUserDrag = 'none';
+  img.draggable = false;
+});
+
+/* Dificultar la selección de imágenes */
+document.querySelectorAll('img').forEach(function(img) {
+  img.style.pointerEvents = 'none';
+});
+</script>
+ 
 </body>
 </html>
